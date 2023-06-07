@@ -8,6 +8,15 @@ import tempfile
 # Set Streamlit page configuration
 st.set_page_config(page_title="Ask your CSV")
 
+def process_files(csv_files):
+    tmp_file_names = []
+    for csv_file in csv_files:
+        # Create a temporary file and write the contents of the uploaded file to it
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".csv") as tmp:
+            tmp.write(csv_file.getvalue())
+            tmp_file_names.append(tmp.name)
+    return tmp_file_names
+
 def main():
     load_dotenv()
 
@@ -17,24 +26,32 @@ def main():
         return
 
     st.header("Ask your CSV 📈")
+    st.markdown("Please upload one or more CSV files and ask a question about the data.")
 
     csv_files = st.file_uploader("Upload a CSV file", type="csv", accept_multiple_files=True)
     if csv_files:
-        tmp_file_names = []
-        for csv_file in csv_files:
-            # Create a temporary file and write the contents of the uploaded file to it
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".csv") as tmp:
-                tmp.write(csv_file.getvalue())
-                tmp_file_names.append(tmp.name)
+        tmp_file_names = process_files(csv_files)
+        st.success("CSV file(s) uploaded successfully!")
 
-        # Pass the path to the temporary file to create_csv_agent
         agent = create_csv_agent(OpenAI(temperature=0), tmp_file_names if len(tmp_file_names) > 1 else tmp_file_names[0], verbose=True)
 
-        user_question = st.text_input("Ask a question about your CSV: ")
+        user_question = st.text_input("Ask a question about your Data: ")
+        submit_button = st.button("Submit")
 
-        if user_question is not None and user_question.strip() != "":
-            with st.spinner(text="In progress..."):
-                st.write(agent.run(user_question))
+        if submit_button:
+            if user_question.strip() != "":
+                with st.spinner(text="In progress..."):
+                    result = agent.run(user_question)
+                    if result:
+                        st.write(result)
+                    else:
+                        st.error("No result returned. Please check your question.")
+            else:
+                st.error("Please enter a valid question.")
+
+        # Delete temporary files
+        for file_name in tmp_file_names:
+            os.remove(file_name)
 
 if __name__ == "__main__":
     main()
