@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import os
 import streamlit as st
 import tempfile
+import pandas as pd
 
 # Set Streamlit page configuration
 st.set_page_config(page_title="Ask your CSV")
@@ -15,6 +16,9 @@ def process_files(csv_files):
         with tempfile.NamedTemporaryFile(delete=False, suffix=".csv") as tmp:
             tmp.write(csv_file.getvalue())
             tmp_file_names.append(tmp.name)
+            data = pd.read_csv(csv_file)
+            limited_data = pd.concat([data.head(3), data.tail(2)])
+            st.dataframe(limited_data, use_container_width=True)
     return tmp_file_names
 
 def main():
