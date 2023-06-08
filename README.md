@@ -1,3 +1,9 @@
+
+
+
+Uploading aks-csv-demo-1.mp4…
+
+
 # Ask Your CSV Data
 
 This is a web application that allows you to upload CSV files and ask questions about the data in those files. The application uses the OpenAI language model to generate responses to your questions.
