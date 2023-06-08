@@ -1,3 +1,6 @@
+
+https://github.com/ademarc/langchain-ask-csv-data/assets/125093622/038f9c9b-308b-4b1d-8f75-35eb9ff43a29
+
 # Ask Your CSV Data
 
 This is a web application that allows you to upload CSV files and ask questions about the data in those files. The application uses the OpenAI language model to generate responses to your questions.
