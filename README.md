@@ -1,36 +1,34 @@
-# Langchain Chat-CSV with OpenAI (Tutorial)
-> You can find the step-by-step video tutorial to build this application [on YouTube](https://youtu.be/tjeti5vXWOU).
+# Ask Your CSV Data
 
-This is a Python application that enables you to load a CSV file and ask questions about its contents using natural language. The application leverages Language Models (LLMs) to generate responses based on the CSV data. The LLM will only provide answers related to the information present in the CSV.
-
-## How it works
-
-The application reads the CSV file and processes the data. It utilizes OpenAI LLMs alongside with Langchain Agents in order to answer your questions. The CSV agent then uses tools to find solutions to your questions and generates an appropriate response with the help of a LLM.
-
-The application employs Streamlit to create the graphical user interface (GUI) and utilizes Langchain to interact with the LLM.
+This is a web application that allows you to upload CSV files and ask questions about the data in those files. The application uses the OpenAI language model to generate responses to your questions.
 
 ## Installation
 
-To install the repository, follow these steps:
-
-1. Clone this repository to your local machine.
-2. Install the necessary dependencies by running the following command:
-
-   ```
-   pip install -r requirements.txt
-   ```
-
-3. Additionally, you need to obtain an OpenAI API key and add it to the `.env` file.
+1. Clone this repository.
+2. Install the necessary packages by running `pip install -r requirements.txt`.
+3. Set your OpenAI API key as an environment variable. You can do this by creating a `.env` file in the same directory as the script, with the following content:
+    ```
+    OPENAI_API_KEY=your_api_key_here
+    ```
 
 ## Usage
 
-To use the application, execute the `main.py` file using the Streamlit CLI. Make sure you have Streamlit installed before running the application. Run the following command in your terminal:
+1. Run the script by executing `python main.py`.
+2. Open your web browser and go to `http://localhost:8501`.
+3. Upload your CSV files and ask a question about the data in those files.
 
-```
-streamlit run main.py
-```
+## .env.sample
 
-## Contributing
-This repository is intended for educational purposes only and is not designed to accept external contributions. It serves as supplemental material for the YouTube tutorial, demonstrating how to build the project.
+This file is a template for the `.env` file you need to create. It should look like this:
+    ```
+    OPENAI_API_KEY=your_api_key_here
+    ```
+Replace `your_api_key_here` with your actual OpenAI API key.
 
-For any suggestions or improvements related to the tutorial content, please feel free to reach out through the YouTube channel's comment section.
+## License
+
+This project is licensed under the terms of the MIT License.
+
+## Author
+
+This project was created by Marcus Adebayo.

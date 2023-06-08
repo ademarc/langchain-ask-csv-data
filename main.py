@@ -9,6 +9,14 @@ import pandas as pd
 # Set Streamlit page configuration
 st.set_page_config(page_title="Ask your CSV")
 
+hide_streamlit_style = """
+            <style>
+            
+            footer {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 def process_files(csv_files):
     tmp_file_names = []
     for csv_file in csv_files:
@@ -29,10 +37,10 @@ def main():
         st.error("OPENAI_API_KEY is not set")
         return
 
-    st.header("Ask your CSV 📈")
+    st.header("Chat with your CSV Data 📈")
     st.markdown("Please upload one or more CSV files and ask a question about the data.")
 
-    csv_files = st.file_uploader("Upload a CSV file", type="csv", accept_multiple_files=True)
+    csv_files = st.file_uploader("Upload CSV file(s)", type="csv", accept_multiple_files=True)
     if csv_files:
         tmp_file_names = process_files(csv_files)
         st.success("CSV file(s) uploaded successfully!")
