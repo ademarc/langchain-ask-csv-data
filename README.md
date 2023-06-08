@@ -16,7 +16,7 @@ This is a web application that allows you to upload CSV files and ask questions 
 
 ## Usage
 
-1. Run the script by executing `python main.py`.
+1. Run the script by executing `streamlit run main.py`.
 2. Open your web browser and go to `http://localhost:8501`.
 3. Upload your CSV files and ask a question about the data in those files.
 
