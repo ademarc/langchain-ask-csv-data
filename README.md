@@ -7,7 +7,7 @@ This is a web application that allows you to upload CSV files and ask questions 
 
 ## Installation
 
-1. Clone this repository.
+1. Clone this repository by running `git clone https://github.com/ademarc/langchain-ask-csv-data.git`.
 2. Install the necessary packages by running `pip install -r requirements.txt`.
 3. Set your OpenAI API key as an environment variable. You can do this by creating a `.env` file in the same directory as the script, with the following content:
     ```
